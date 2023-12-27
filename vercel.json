@@ -10,5 +10,16 @@
       "src": "/(.*)",
       "dest": "index.js"
     }
+  ],
+  "headers": [
+    {
+      "source": "/index.js",
+      "headers": [
+        {
+          "key": "api-key",
+          "value": "P6APPN48d9tn5pnYkCkv"
+        }
+      ]
+    }
   ]
 }
