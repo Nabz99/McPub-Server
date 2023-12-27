@@ -11,51 +11,75 @@ const cors = require('cors');
 new seeder().wilaya();
 
 const app = express();
+try {
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+  app.use(cors());
 
-app.use(cors());
+  // app.use(apiKeyMiddleware);
 
-// app.use(apiKeyMiddleware);
+  // app.use('/uploads', express.static('C:\\Users\\pc\\Desktop\\McPub\\Server\\uploads'));
 
-// app.use('/uploads', express.static('C:\\Users\\pc\\Desktop\\McPub\\Server\\uploads'));
+  // Set up multer for file uploads
+  // const storage = multer.diskStorage({
+  //   destination: (req, file, cb) => {
+  //     cb(null, 'uploads/');
+  //   },
+  //   filename: (req, file, cb) => {
+  //     const timestamp = Date.now();
+  //     const filename = timestamp + '-' + file.originalname;
+  //     cb(null, filename);
+  //   },
+  // });
 
-// Set up multer for file uploads
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'uploads/');
-//   },
-//   filename: (req, file, cb) => {
-//     const timestamp = Date.now();
-//     const filename = timestamp + '-' + file.originalname;
-//     cb(null, filename);
-//   },
-// });
+  // const upload = multer({ storage: storage });
 
-// const upload = multer({ storage: storage });
+  app.get("/", (req, res) => {
+    res.send("<h1>Server...</h1>");
+  });
 
-app.get("/", (req, res) => {
-  res.send("<h1>Server...</h1>");
-});
+  app.use('/api', router);
 
-app.use('/api', router);
+  // Error Handling
+  app.use((req, res, next) => {
+    next(createError(404));
+  });
+  
+  app.use(function (err, req, res, next) {
+    console.error(err.message);
+    if (!err.statusCode) err.statusCode = 500;
+    res.status(err.statusCode).send(err.message);
+  });
+  
+  mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+      console.log('Connected to the database');
+    })
+    .catch((error) => {
+      console.error('Error connecting to the database:', error);
+      process.exit(1); // Exit the process if the database connection fails
+    });
 
-mongoose.connect(process.env.DB_URL);
 
-const port = process.env.PORT || 5000;
+  const port = process.env.PORT || 5000;
 
-app.listen(port , () => {
-  console.log('Server is listening', port);
-});
+  app.listen(port, () => {
+    console.log('Server is listening', port);
+  });
 
-// Error Handling
-app.use((req, res, next) => {
-  next(createError(404));
-});
+  // Error Handling
+  app.use((req, res, next) => {
+    next(createError(404));
+  });
 
-app.use(function (err, req, res, next) {
-  console.error(err.message);
-  if (!err.statusCode) err.statusCode = 500;
-  res.status(err.statusCode).send(err.message);
-});
+  app.use(function (err, req, res, next) {
+    console.error(err.message);
+    if (!err.statusCode) err.statusCode = 500;
+    res.status(err.statusCode).send(err.message);
+  });
+} catch (error) {
+  console.error('Error:', error);
+  res.status(500).send('Internal Server Error');
+  // You can also log to a file or external service for better debugging
+}
