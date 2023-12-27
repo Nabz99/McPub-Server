@@ -22,18 +22,18 @@ app.use(cors());
 // app.use('/uploads', express.static('C:\\Users\\pc\\Desktop\\McPub\\Server\\uploads'));
 
 // Set up multer for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    const timestamp = Date.now();
-    const filename = timestamp + '-' + file.originalname;
-    cb(null, filename);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'uploads/');
+//   },
+//   filename: (req, file, cb) => {
+//     const timestamp = Date.now();
+//     const filename = timestamp + '-' + file.originalname;
+//     cb(null, filename);
+//   },
+// });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
 app.get("/", (req, res) => {
   res.send("<h1>Server...</h1>");
@@ -43,14 +43,17 @@ app.use('/api', router);
 
 mongoose.connect(process.env.DB_URL);
 
-app.listen(process.env.PORT, () => {
-  console.log('Server is listening', process.env.PORT);
+const port = process.env.PORT || 5000;
+
+app.listen(port , () => {
+  console.log('Server is listening', port);
 });
 
 // Error Handling
 app.use((req, res, next) => {
   next(createError(404));
 });
+
 app.use(function (err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
