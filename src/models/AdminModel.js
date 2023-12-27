@@ -42,4 +42,4 @@ const AdminSchema = new Schema({
 
 });
 
-module.exports = AdminModel = model('Admin', AdminSchema,'admins');
+module.exports = AdminSchema = model('Admin', AdminSchema,'admins');
