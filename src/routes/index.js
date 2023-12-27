@@ -9,7 +9,6 @@ const client = require('./client')
 const cmdarticle = require('./cmdarticle')
 const pub = require('./pub')
 const versement = require('./versement')
-const wilaya = require('./wilaya')
 
 const router = express.Router()
 
@@ -23,7 +22,6 @@ router.use('/client', client)
 router.use('/cmdarticle', cmdarticle)
 router.use('/pub', pub)
 router.use('/versement', versement)
-router.use('/wilaya', wilaya)
 
 
 
