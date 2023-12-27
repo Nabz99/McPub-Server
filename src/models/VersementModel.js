@@ -21,4 +21,4 @@ const VersementSchema = new Schema({
 
 });
 
-module.exports = VersementModel = model('Versement', VersementSchema, 'versements');
+module.exports = model('Versement', VersementSchema, 'versements');

@@ -56,4 +56,4 @@ const PubSchema = new Schema({
 
 });
 
-module.exports = PubModel = model('Pub', PubSchema, 'pubs');
+module.exports = model('Pub', PubSchema, 'pubs');

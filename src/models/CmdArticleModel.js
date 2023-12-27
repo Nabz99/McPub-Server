@@ -51,4 +51,4 @@ const CmdArticleSchema = new Schema({
 
 });
 
-module.exports = CmdArticlesModel = model('CmdArticle', CmdArticleSchema, 'cmdarticles');
+module.exports = model('CmdArticle', CmdArticleSchema, 'cmdarticles');

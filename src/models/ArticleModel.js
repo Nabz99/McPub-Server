@@ -34,4 +34,4 @@ const ArticleSchema = new Schema({
 
 });
 
-module.exports = ArticleModel = model('Article', ArticleSchema,'articles');
+module.exports = model('Article', ArticleSchema,'articles');
