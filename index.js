@@ -6,7 +6,7 @@ const seeder = require('./src/classes/Seeder');
 const router = require('./src/routes');
 const createError = require('http-errors');
 const cors = require('cors');
-const apiKeyMiddleware = require('./middleware/apiKey');
+// const apiKeyMiddleware = require('./middleware/apiKey');
 
 new seeder().wilaya();
 
@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 
-app.use(apiKeyMiddleware);
+// app.use(apiKeyMiddleware);
 
 // app.use('/uploads', express.static('C:\\Users\\pc\\Desktop\\McPub\\Server\\uploads'));
 
