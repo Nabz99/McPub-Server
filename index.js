@@ -8,8 +8,6 @@ const createError = require('http-errors');
 const cors = require('cors');
 // const apiKeyMiddleware = require('./middleware/apiKey');
 
-new seeder().wilaya();
-
 const app = express();
 try {
   app.use(express.json());

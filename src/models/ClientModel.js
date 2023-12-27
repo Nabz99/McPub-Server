@@ -35,14 +35,6 @@ const ClientSchema = new Schema({
     required: true,
     unique: true
     },
-  // wilaya: {
-  //   type:  Schema.Types.ObjectId,
-  //   ref: 'Wilaya'
-  // },
-  // adresse: {
-  //   type: String,
-  //   required: true
-  // },
   solde:{
     type: Number,
   },
