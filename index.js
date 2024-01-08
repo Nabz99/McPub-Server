@@ -48,6 +48,8 @@ try {
     if (!err.statusCode) err.statusCode = 500;
     res.status(err.statusCode).send(err.message);
   });
+  // mongoose.connect("mongodb://127.0.0.1:27017/mcpub")
+
 
   mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
