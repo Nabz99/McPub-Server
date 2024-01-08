@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const router = require('./src/routes');
 const createError = require('http-errors');
 const cors = require('cors');
-// const apiKeyMiddleware = require('./middleware/apiKey');
+const apiKeyMiddleware = require('./middleware/apiKey');
 
 const app = express();
 try {
@@ -14,7 +14,7 @@ try {
 
   app.use(cors());
 
-  // app.use(apiKeyMiddleware);
+  app.use(apiKeyMiddleware);
 
   // app.use('/uploads', express.static('C:\\Users\\pc\\Desktop\\McPub\\Server\\uploads'));
 
@@ -32,9 +32,9 @@ try {
 
   // const upload = multer({ storage: storage });
 
-  app.get("/", (req, res) => {
-    res.send("<h1>Server...</h1>");
-  });
+  // app.get("/", (req, res) => {
+  //   res.send("<h1>Server...</h1>");
+  // });
 
   app.use('/api', router);
 
@@ -59,7 +59,7 @@ try {
     });
 
 
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 5000;
 
   app.listen(port, () => {
     console.log('Server is listening on port', port);
