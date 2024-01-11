@@ -2,7 +2,6 @@ const express = require('express');
 const multer = require('multer');
 require('dotenv').config();
 const mongoose = require('mongoose');
-const router = require('./src/routes');
 const createError = require('http-errors');
 const cors = require('cors');
 const router = require('./src/routes');
